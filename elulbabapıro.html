@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eylül’e Özel Doğum Günü 🎉</title>
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:sans-serif;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+              url("https://i.imgur.com/5O9Dq6U.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+  color:white;
+}
+
+.container{
+  z-index:2;
+  padding:20px;
+}
+
+h1{
+  font-size:55px;
+  animation:pop 1s ease;
+}
+
+p{
+  font-size:24px;
+}
+
+@keyframes pop{
+  0%{transform:scale(0);}
+  100%{transform:scale(1);}
+}
+
+.confetti{
+  position:absolute;
+  width:10px;
+  height:10px;
+  animation:fall linear infinite;
+}
+
+.heart{
+  position:absolute;
+  font-size:24px;
+  animation:floatUp 6s linear infinite;
+}
+
+.balloon{
+  position:absolute;
+  font-size:40px;
+  animation:floatUp 8s linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-100vh) rotate(0deg);}
+  100%{transform:translateY(100vh) rotate(720deg);}
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-20vh);}
+}
+
+/* Başlat butonu */
+#startButton{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  padding:20px 40px;
+  font-size:24px;
+  background-color:rgba(0,0,0,0.6);
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  z-index:100;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎉 Doğum Günün Kutlu Olsun EYLÜL 🎉</h1>
+  <p>Kardeşim benim ❤️</p>
+  <p>İyi ki doğdun!</p>
+</div>
+
+<!-- Müzik -->
+<audio id="myAudio" loop>
+  <source src="dogumgunu123.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Başlat butonu -->
+<button id="startButton">🎵 Müzik Başlat</button>
+
+<script>
+// Başlat butonuna tıklandığında müzik ve animasyon başlar
+const audio = document.getElementById("myAudio");
+const btn = document.getElementById("startButton");
+
+btn.addEventListener("click", () => {
+  audio.play();
+  btn.style.display = "none"; // buton kaybolur
+  startAnimations();
+});
+
+// Animasyonları başlatan fonksiyon
+function startAnimations(){
+  // Confetti
+  for(let i=0;i<180;i++){
+    let confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random()*100 + "vw";
+    confetti.style.background = "hsl("+Math.random()*360+",100%,50%)";
+    confetti.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(confetti);
+  }
+
+  // Kalpler
+  for(let i=0;i<30;i++){
+    let heart = document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(heart);
+  }
+
+  // Balonlar
+  for(let i=0;i<20;i++){
+    let balloon = document.createElement("div");
+    balloon.className="balloon";
+    balloon.innerHTML="🎈";
+    balloon.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(balloon);
+  }
+}
+</script>
+
+</body>
+</html>
